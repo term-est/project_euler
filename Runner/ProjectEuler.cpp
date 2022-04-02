@@ -3,6 +3,7 @@
 #include <fmt/chrono.h>
 
 #include "Solutions.hpp"
+#include "Inputs.hpp"
 
 #include <chrono>
 
@@ -12,7 +13,7 @@
 template <typename T, typename ... Args>
 auto benchmark(T func, Args ... args)
 {
-	constexpr std::size_t iter = 100'000;
+	constexpr std::size_t iter = 1000;
 
 	std::chrono::high_resolution_clock::time_point timer = std::chrono::high_resolution_clock::now();
 
@@ -31,10 +32,12 @@ auto benchmark(T func, Args ... args)
 #pragma GCC pop_options
 
 
+
 auto main() -> int
 {
 	using namespace project_euler;
 
+	// TODO: automate and generalize this garbage
 	fmt::print("Project Setup Has Been Completed Successfully\n");
 
 	fmt::print("Problem 1: {}\n", sum_of_multiples(0, 1000, {3, 5}));
@@ -43,11 +46,19 @@ auto main() -> int
 
 	fmt::print("Problem 3: {}\n", largest_prime_factor(600851475143));
 
-	fmt::print("Problem 4: {}\n", largest_palindrome_product());
+	fmt::print("Problem 4: {}\n", largest_palindrome_product(999));
 
 	fmt::print("Problem 5: {}\n", highly_composite_number());
 
-	benchmark(largest_palindrome_product);
+	fmt::print("Problem 6: {}\n", sum_square_difference(100));
+
+	fmt::print("Problem 7: {}\n", nth_prime(10001));
+
+	fmt::print("Problem 8: {}\n", largest_product(problem_8_input, 13));
+
+	fmt::print("Problem 9: {}\n", pythagoras_triple(1000));
+
+	fmt::print("Problem 10: {}\n", sum_of_primes(2'000'000));
 
 	return 0;
 }

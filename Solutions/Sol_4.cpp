@@ -32,13 +32,13 @@ static bool is_palindrome(const std::string_view &input) noexcept
 }
 
 [[nodiscard]] [[gnu::pure]]
-std::size_t largest_palindrome_product() noexcept
+std::size_t largest_palindrome_product(std::size_t upper_limit) noexcept
 {
 	std::size_t max_product = 0;
 
-	for (std::uint16_t i = 999; i > 1; --i)
+	for (std::uint16_t i = upper_limit; i > 1; --i)
 	{
-		for (std::uint16_t  j = 999; j > 1; --j)
+		for (std::uint16_t  j = upper_limit; j > 1; --j)
 		{
 			const std::size_t product = i * j;
 
@@ -46,7 +46,7 @@ std::size_t largest_palindrome_product() noexcept
 			if (product < max_product) [[likely]]
 			{
 				// if the condition is true, it's meaningless to try other i values
-				if (i - 1 * 999 < max_product) [[unlikely]]
+				if (i - 1 * upper_limit < max_product) [[unlikely]]
 					return max_product;
 
 				break;
